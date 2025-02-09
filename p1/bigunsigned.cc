@@ -12,7 +12,7 @@
 
 #include "bigunsigned.h"
 
-BigUnsigned::BigUnsigned(unsigned n = 0) {
+BigUnsigned::BigUnsigned(unsigned n) {
   number_[0] = 0;
 }
 
@@ -51,6 +51,11 @@ bool BigUnsigned::operator<(const BigUnsigned& numero) {
 BigUnsigned operator+(const BigUnsigned& numero) {
   bool carry{false};
   for (size_t i{0}; i < sizeof(numero); ++i) {
-    
+    number_[i] = number()[i] + numero.number()[i] + carry;
+    carry = false;
+    if (number_[i] >= 10) {
+      number_ -= 10;
+      carry = true;
+    }
   }
 }

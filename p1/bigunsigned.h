@@ -25,7 +25,7 @@ class BigUnsigned {
   BigUnsigned(const unsigned char* );
   BigUnsigned(const BigUnsigned&);
 
-  BigUnsigned& BigUnsigned::operator=(const BigUnsigned&);
+  BigUnsigned& operator=(const BigUnsigned&);
 
   bool operator==(const BigUnsigned&) const;
   bool operator<(const BigUnsigned&);
