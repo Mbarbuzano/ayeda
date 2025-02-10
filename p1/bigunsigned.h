@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <vector>
+#include <cstring>
 
 class BigUnsigned {
  public:
@@ -28,7 +29,7 @@ class BigUnsigned {
   BigUnsigned& operator=(const BigUnsigned&);
 
   bool operator==(const BigUnsigned&) const;
-  bool operator<(const BigUnsigned&);
+  bool operator<(const BigUnsigned&) const;
 
   BigUnsigned& operator++(); // Pre-incremento
   BigUnsigned operator++(int); // Post-incremento
@@ -38,7 +39,7 @@ class BigUnsigned {
   BigUnsigned operator+(const BigUnsigned&);
   BigUnsigned operator-(const BigUnsigned&) const;
   BigUnsigned operator*(const BigUnsigned&) const;
-  BigUnsigned operator/(const BigUnsigned&, const BigUnsigned&);
+  BigUnsigned operator/(const BigUnsigned&);
   BigUnsigned operator%(const BigUnsigned&) const;
 
  private:
