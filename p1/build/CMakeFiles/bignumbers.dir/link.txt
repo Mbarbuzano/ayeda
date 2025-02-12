@@ -1,0 +1,1 @@
+/usr/bin/c++ -rdynamic CMakeFiles/bignumbers.dir/biginteger.cc.o CMakeFiles/bignumbers.dir/bigunsigned.cc.o CMakeFiles/bignumbers.dir/main_file.cc.o -o bignumbers 

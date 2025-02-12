@@ -13,39 +13,49 @@
 #ifndef BIGINTEGER_H_
 #define BIGINTEGER_H_
 
-#include <iostream>
-#include <vector>
+#include "bigunsigned.h"
 
 class BigInteger {
  public:
+  // Constructores
+  BigInteger(int n = 0);
+  BigInteger(const BigUnsigned&, bool negative = false);
 
-  std::vector<unsigned char> number() const { return number_; }
+  // Getters
+  inline BigUnsigned number() const { return number_; }
+  inline BigUnsigned number() { return number_; }
+  inline bool is_negative() const { return is_negative_; }
+  inline bool is_negative() { return is_negative_; }
 
-  BigInteger(unsigned n = 0);
-  BigInteger(const unsigned char* );
-  BigInteger(const BigInteger&);
+  //Setters
+  void SetNeg(const bool& is_negative) { is_negative_ = is_negative; }
 
-  BigInteger& BigInteger::operator=(const BigInteger&);
-
+  // Operadores de asignación y comparación
+  BigInteger& operator=(const BigInteger&);
   bool operator==(const BigInteger&) const;
-  bool operator<(const BigInteger&);
+  bool operator<(const BigInteger&) const;
 
-  BigInteger& operator++(); // Pre-incremento
-  BigInteger operator++(int); // Post-incremento
-  BigInteger& operator--(); // Pre-decremento
-  BigInteger operator--(int); // Post-decremento
-
-  BigInteger operator+(const BigInteger&);
+  // Operadores aritméticos
+  BigInteger operator+(const BigInteger&) const;
   BigInteger operator-(const BigInteger&) const;
   BigInteger operator*(const BigInteger&) const;
-  BigInteger operator/(const BigInteger&, const BigInteger&);
+  BigInteger operator/(const BigInteger&) const;
   BigInteger operator%(const BigInteger&) const;
 
+  // Operadores de incremento y decremento
+  BigInteger& operator++();
+  BigInteger operator++(int);
+  BigInteger& operator--();
+  BigInteger operator--(int);
+
  private:
-  std::vector<unsigned char> number_;
+  BigUnsigned number_;  // Valor absoluto
+  bool is_negative_;    // Indica si es negativo
 };
 
 std::ostream& operator<<(std::ostream&, const BigInteger&);
 std::istream& operator>>(std::istream&, BigInteger&);
+
+BigInteger mcd(const BigInteger& uno, const BigInteger& dos);
 
 #endif
