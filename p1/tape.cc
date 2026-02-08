@@ -12,19 +12,12 @@
 
 #include "tape.h"
 
-Tape::Tape(const std::string& filename) {
-  std::ifstream file(filename);
-    if (!file) {
-      throw std::runtime_error("No se pudo abrir el fichero");
+std::ostream& operator<<(std::ostream& os, const Tape& cinta) {
+  for (int y{0}; y < cinta.size_y(); ++y) {
+    for (int x{0}; x < cinta.size_x(); ++x) {
+      os << (cinta.tablero()[x][y] ? "■" : "□");
     }
-
-  file >> size_x_ >> size_y_;
-  tablero_ = std::vector<std::vector<bool>>(size_y_, std::vector<bool>(size_x_, false));
-
-  int x, y;
-  while (file >> x >> y) {
-    if (x >= 0 && x < size_x_ && y >= 0 && y < size_y_) {
-      tablero_[y][x] = true;
-    }
+    os << "\n";
   }
+  return os;
 }

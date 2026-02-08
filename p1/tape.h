@@ -22,12 +22,17 @@ class Tape {
  public:
   Tape(const int& size_x,const int& size_y) : size_x_{size_x}, size_y_{size_y}, 
                                               tablero_(size_x, std::vector<bool>(size_x, false)) {}
-  Tape(const std::string& filename);
-  
+
+  int size_x() const { return size_x_; }
+  int size_y() const { return size_y_; }
+  std::vector<std::vector<bool>> tablero() const { return tablero_; }
+
  private:
   int size_x_;
   int size_y_;
   std::vector<std::vector<bool>> tablero_;
 };
+
+std::ostream& operator<<(std::ostream& os, const Tape& cinta);
 
 #endif

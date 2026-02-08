@@ -11,3 +11,13 @@
 // Contenido: archivo principal de compilación
 
 #include "simulator.h"
+
+int main() {
+  int sizex, sizey;
+  std::cout << "Inserte las dimensiones del tablero (''x''): ";
+  std::cin >> sizex;
+  sizey = sizex;
+
+  Tape cinta{sizex, sizey};
+  std::cout << cinta;
+}

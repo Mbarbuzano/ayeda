@@ -16,4 +16,25 @@
 
 #include "tape.h"
 
+enum Direccion {
+  UP,
+  DOWN,
+  LEFT,
+  RIGHT
+};
+
+class Ant{
+ public:
+  Ant(const int& x, const int& y, Direccion dir) : x_{x}, y_{y}, dir_{dir} { }
+
+  void step(Tape& tape);
+
+ private:
+  int x_;
+  int y_;
+  Direccion dir_;
+};
+
+std::ostream& operator<<(std::ostream& os, const Ant& ant);
+
 #endif
