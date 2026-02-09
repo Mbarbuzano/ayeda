@@ -16,4 +16,12 @@
 
 #include "ant.h"
 
+class Simulator {
+ public:
+
+ private:
+  Ant hormiga_;
+  Tape tablero_;
+};
+
 #endif

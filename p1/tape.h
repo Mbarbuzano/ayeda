@@ -25,7 +25,8 @@ class Tape {
 
   int size_x() const { return size_x_; }
   int size_y() const { return size_y_; }
-  std::vector<std::vector<bool>> tablero() const { return tablero_; }
+  std::vector<std::vector<bool>>& tablero() { return tablero_; }
+  const std::vector<std::vector<bool>>& tablero() const { return tablero_; }
 
  private:
   int size_x_;
