@@ -18,6 +18,8 @@ int main() {
   std::cin >> sizex;
   sizey = sizex;
 
-  Tape cinta{sizex, sizey};
-  std::cout << cinta;
+  Ant hormiga{sizex / 2, sizey / 2, UP};
+  Simulator simulador{sizex, sizey, hormiga};
+
+  simulador.run();
 }

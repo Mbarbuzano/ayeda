@@ -15,7 +15,6 @@
 #define TAPE_H_
 
 #include <iostream>
-#include <fstream>
 #include <vector>
 
 class Tape {

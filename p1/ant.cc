@@ -45,3 +45,13 @@ void Ant::step(Tape& tape) {
     case RIGHT: ++x_; break;
   }
 }
+
+std::ostream& operator<<(std::ostream& os, const Ant& ant) {
+  switch (ant.dir()) {
+    case UP:    os << '^'; break;
+    case DOWN:  os << 'v'; break;
+    case LEFT:  os << '<'; break;
+    case RIGHT: os << '>'; break;
+  }
+  return os;
+}

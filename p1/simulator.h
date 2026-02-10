@@ -18,10 +18,18 @@
 
 class Simulator {
  public:
+   Simulator(int size_x, int size_y, Ant ant)
+      : tablero_(size_x, size_y), hormiga_(ant), pasos_(0), running_(true) {}
+
+  void run();
+  bool out_of_bounds() const;
+  void render() const;
 
  private:
-  Ant hormiga_;
   Tape tablero_;
+  Ant hormiga_;
+  int pasos_;
+  bool running_;
 };
 
 #endif

@@ -27,7 +27,11 @@ class Ant{
  public:
   Ant(const int& x, const int& y, Direccion dir) : x_{x}, y_{y}, dir_{dir} { }
 
+  const Direccion dir() const { return dir_; }
   void step(Tape& tape);
+
+  const int x() const { return x_; }
+  const int y() const { return y_; }
 
  private:
   int x_;
