@@ -32,7 +32,7 @@ void Simulator::run() {
 }
 
 void Simulator::render() const {
-  // Limpiar pantalla (ANSI, suficiente para la práctica)
+  // Limpiar pantalla
   std::cout << "\033[2J\033[H";
 
   std::cout << "Pasos: " << pasos_ << "\n";
