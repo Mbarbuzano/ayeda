@@ -13,6 +13,13 @@
 #include "simulator.h"
 
 int main(int argc, char* argv[]) {
+  if (argc < 2) {
+    std::cout << "Uso: ./langton fichero.txt\n";
+    return 1;
+  }
+
   Simulator sim(argv[1]);
-  sim.Run();
+  sim.run(100);
+
+  return 0;
 }

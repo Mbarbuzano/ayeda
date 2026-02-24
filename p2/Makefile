@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -Wall -std=c++23
 
-SRC = ant.cc tape.cc simulator.cc ruleant.cc
+SRC = ant.cc tape.cc simulator.cc ruleant.cc main.cc
 OBJ = $(SRC:.cc=.o)
 EXEC = langton
 

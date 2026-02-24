@@ -11,3 +11,30 @@
 // Contenido: implementación de la clase ant
 
 #include "ant.h"
+
+void Ant::turnRight() {
+  switch (dir_) {
+    case Direccion::UP:    dir_ = Direccion::RIGHT; break;
+    case Direccion::RIGHT: dir_ = Direccion::DOWN;  break;
+    case Direccion::DOWN:  dir_ = Direccion::LEFT;  break;
+    case Direccion::LEFT:  dir_ = Direccion::UP;    break;
+  }
+}
+
+void Ant::turnLeft() {
+  switch (dir_) {
+    case Direccion::UP:    dir_ = Direccion::LEFT;  break;
+    case Direccion::LEFT:  dir_ = Direccion::DOWN;  break;
+    case Direccion::DOWN:  dir_ = Direccion::RIGHT; break;
+    case Direccion::RIGHT: dir_ = Direccion::UP;    break;
+  }
+}
+
+void Ant::moveForward() {
+  switch (dir_) {
+    case Direccion::UP:    --y_; break;
+    case Direccion::DOWN:  ++y_; break;
+    case Direccion::LEFT:  --x_; break;
+    case Direccion::RIGHT: ++x_; break;
+  }
+}

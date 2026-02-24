@@ -15,11 +15,11 @@
 
 #include "tape.h"
 
-enum Direccion {
+enum class Direccion {
   UP,
+  RIGHT,
   DOWN,
-  LEFT,
-  RIGHT
+  LEFT
 };
 
 class Ant {
@@ -29,13 +29,17 @@ public:
 
   virtual ~Ant() = default;
 
-  virtual void step(Tape& tape) = 0;   // método abstracto
+  virtual void step(Tape& tape) = 0;
 
   int x() const { return x_; }
   int y() const { return y_; }
   Direccion dir() const { return dir_; }
 
 protected:
+  void turnRight();
+  void turnLeft();
+  void moveForward();
+
   int x_;
   int y_;
   Direccion dir_;

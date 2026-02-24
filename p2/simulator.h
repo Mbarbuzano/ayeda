@@ -13,22 +13,17 @@
 #ifndef SIMULATOR_H_
 #define SIMULATOR_H_
 
+#include <memory>
 #include "ruleant.h"
 
 class Simulator {
- public:
-   Simulator(int size_x, int size_y, Ant ant)
-      : tablero_(size_x, size_y), hormiga_(ant), pasos_(0), running_(true) {}
+public:
+  Simulator(const std::string& filename);
+  void run(int steps);
 
-  void run();
-  bool out_of_bounds() const;
-  void render() const;
-
- private:
-  Tape tablero_;
-  Ant hormiga_;
-  int pasos_;
-  bool running_;
+private:
+  Tape tape_;
+  std::vector<std::unique_ptr<Ant>> ants_;
 };
 
 #endif

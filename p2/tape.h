@@ -14,26 +14,23 @@
 #ifndef TAPE_H_
 #define TAPE_H_
 
-#include <iostream>
 #include <vector>
+#include <iostream>
 
 class Tape {
- public:
-  Tape(const int& size_x,const int& size_y) : size_x_{size_x}, size_y_{size_y}, 
-                                              tablero_(size_x, std::vector<bool>(size_x, false)) {}
+public:
+  Tape(int width, int height, int num_colors);
 
-  int size_x() const { return size_x_; }
-  int size_y() const { return size_y_; }
-  std::vector<std::vector<bool>>& tablero() { return tablero_; }
-  const std::vector<std::vector<bool>>& tablero() const { return tablero_; }
+  int getColor(int x, int y) const;
+  void setColor(int x, int y, int color);
 
- private:
-  int size_x_;
-  int size_y_;
-  std::vector<std::vector<int>> tablero_;
+  void print() const;
+
+private:
+  int width_;
+  int height_;
   int num_colors_;
+  std::vector<std::vector<int>> grid_;
 };
-
-std::ostream& operator<<(std::ostream& os, const Tape& cinta);
 
 #endif

@@ -12,12 +12,23 @@
 
 #include "tape.h"
 
-std::ostream& operator<<(std::ostream& os, const Tape& cinta) {
-  for (int y{0}; y < cinta.size_y(); ++y) {
-    for (int x{0}; x < cinta.size_x(); ++x) {
-      os << (cinta.tablero()[x][y] ? "■" : "□");
+Tape::Tape(int width, int height, int num_colors)
+  : width_{width}, height_{height}, num_colors_{num_colors},
+    grid_(height, std::vector<int>(width, 0)) {}
+
+int Tape::getColor(int x, int y) const {
+  return grid_[y][x];
+}
+
+void Tape::setColor(int x, int y, int color) {
+  grid_[y][x] = color;
+}
+
+void Tape::print() const {
+  for (int y = 0; y < height_; ++y) {
+    for (int x = 0; x < width_; ++x) {
+      std::cout << grid_[y][x];
     }
-    os << "\n";
+    std::cout << '\n';
   }
-  return os;
 }

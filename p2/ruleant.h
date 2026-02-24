@@ -17,7 +17,7 @@
 
 class RuleAnt : public Ant {
 public:
-  RuleAnt(int x, int y, Direccion dir, std::string rule);
+  RuleAnt(int x, int y, Direccion dir, const std::string& rule);
 
   void step(Tape& tape) override;
 
