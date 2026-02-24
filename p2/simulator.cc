@@ -11,7 +11,6 @@
 // Contenido: implementación de la clase simulator
 
 #include "simulator.h"
-#include "ruleant.h"
 #include <fstream>
 #include <sstream>
 
@@ -64,11 +63,17 @@ Simulator::Simulator(const std::string& filename)
 }
 
 void Simulator::run(int steps) {
-  for (int i = 0; i < steps; ++i) {
-    for (auto& ant : ants_) {
-      ant->step(tape_);
-    }
-  }
+    for (int i = 0; i < steps; ++i) {
+        for (auto& ant : ants_) {
+            ant->step(tape_);
+        }
+        // pasar punteros de hormigas para impresión
+        std::vector<Ant*> ant_ptrs;
+        for (auto& ant : ants_)
+            ant_ptrs.push_back(ant.get());
 
-  tape_.print();
+        tape_.print(ant_ptrs);
+        std::cout << "Step " << i+1 << "\n";
+        std::cin.get(); // esperar Enter
+    }
 }

@@ -13,7 +13,11 @@
 #ifndef ANT_H_
 #define ANT_H_
 
-#include "tape.h"
+#include <vector>
+#include <iostream>
+
+
+class Tape;
 
 enum class Direccion {
   UP,
@@ -38,7 +42,7 @@ public:
 protected:
   void turnRight();
   void turnLeft();
-  void moveForward();
+  void moveForward(int width, int height);
 
   int x_;
   int y_;

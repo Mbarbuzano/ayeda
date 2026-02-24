@@ -14,15 +14,27 @@
 #ifndef TAPE_H_
 #define TAPE_H_
 
-#include <vector>
-#include <iostream>
+#include "ant.h"
 
 class Tape {
 public:
-  Tape(int width, int height, int num_colors);
 
-  int getColor(int x, int y) const;
-  void setColor(int x, int y, int color);
+  Tape(int w, int h, int n_colors)
+    : width_(w), height_(h), num_colors_(n_colors), grid_(h, std::vector<int>(w, 0)) {}
+
+  void print(const std::vector<Ant*>& ants) const;
+  int width() const { return  width_; }
+  int height() const { return height_; }
+
+
+
+  int getColor(int x, int y) const {
+    return grid_[y][x];
+  }
+
+  void setColor(int x, int y, int color) {
+    grid_[y][x] = color % num_colors_; // ciclico
+  }
 
   void print() const;
 

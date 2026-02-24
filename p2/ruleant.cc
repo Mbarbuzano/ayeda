@@ -27,5 +27,5 @@ void RuleAnt::step(Tape& tape) {
 
   tape.setColor(x_, y_, (color + 1) % rule_.size());
 
-  moveForward();
+  moveForward(tape.width(), tape.height());
 }

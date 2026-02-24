@@ -12,23 +12,45 @@
 
 #include "tape.h"
 
-Tape::Tape(int width, int height, int num_colors)
-  : width_{width}, height_{height}, num_colors_{num_colors},
-    grid_(height, std::vector<int>(width, 0)) {}
 
-int Tape::getColor(int x, int y) const {
-  return grid_[y][x];
-}
+// Secuencias ANSI para colores (background)
+const std::string COLORS[4] = {
+  "\033[47m", // blanco
+  "\033[41m", // rojo
+  "\033[42m", // verde
+  "\033[44m"  // azul
+};
+const std::string RESET = "\033[0m";
 
-void Tape::setColor(int x, int y, int color) {
-  grid_[y][x] = color;
-}
-
-void Tape::print() const {
-  for (int y = 0; y < height_; ++y) {
-    for (int x = 0; x < width_; ++x) {
-      std::cout << grid_[y][x];
+void Tape::print(const std::vector<Ant*>& ants) const {
+    for (int y = 0; y < height_; ++y) {
+        std::cout << y << "|"; // número de fila
+        for (int x = 0; x < width_; ++x) {
+            bool printed = false;
+            for (auto ant : ants) {
+                if (ant->x() == x && ant->y() == y) {
+                    // Mostrar la hormiga con dirección
+                    switch (ant->dir()) {
+                        case Direccion::UP:    std::cout << "^"; break;
+                        case Direccion::DOWN:  std::cout << "v"; break;
+                        case Direccion::LEFT:  std::cout << "<"; break;
+                        case Direccion::RIGHT: std::cout << ">"; break;
+                    }
+                    printed = true;
+                    break;
+                }
+            }
+            if (!printed) {
+                int color = grid_[y][x];
+                std::cout << COLORS[color % 4] << " " << RESET;
+            }
+        }
+        std::cout << "\n";
     }
-    std::cout << '\n';
-  }
+
+    // Números de columna arriba
+    std::cout << " ";
+    for (int x = 0; x < width_; ++x)
+        std::cout << x % 10;
+    std::cout << "\n";
 }

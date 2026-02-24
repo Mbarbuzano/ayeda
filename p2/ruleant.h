@@ -13,7 +13,7 @@
 #ifndef RULEANT_H_
 #define RULEANT_H_
 
-#include "ant.h"
+#include "tape.h"
 
 class RuleAnt : public Ant {
 public:

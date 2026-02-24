@@ -30,11 +30,17 @@ void Ant::turnLeft() {
   }
 }
 
-void Ant::moveForward() {
+void Ant::moveForward(int width, int height) {
   switch (dir_) {
     case Direccion::UP:    --y_; break;
     case Direccion::DOWN:  ++y_; break;
     case Direccion::LEFT:  --x_; break;
     case Direccion::RIGHT: ++x_; break;
   }
+
+  if (x_ < 0) x_ = width - 1;
+  if (x_ >= width) x_ = 0;
+
+  if (y_ < 0) y_ = height - 1;
+  if (y_ >= height) y_ = 0;
 }
