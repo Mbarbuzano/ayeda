@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
   }
 
   Simulator sim(argv[1]);
-  sim.run(100);
+  sim.run(10000);
 
   return 0;
 }
