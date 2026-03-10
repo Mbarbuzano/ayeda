@@ -22,17 +22,18 @@ void Simulator::AddAnt(Ant* ant) {
 }
 
 void Simulator::Step() {
+  // Dar a cada hormiga carnívora acceso a la lista de hormigas
+  for (Ant* ant : ants_) {
+    if (auto carnivore = dynamic_cast<CarnivoreAnt*>(ant)) {
+      carnivore->SetAnts(&ants_);
+    }
+  }
+
   for (Ant* ant : ants_) {
     if (!ant->IsAlive()) {
       continue;
     }
-
-    // Carnivore necesita acceso a todas las hormigas
-    if (auto carnivore = dynamic_cast<CarnivoreAnt*>(ant)) {
-      carnivore->Step(*tape_, ants_);
-    } else {
-      ant->Step(*tape_);
-    }
+    ant->Step(*tape_);
   }
 
   RemoveDeadAnts();

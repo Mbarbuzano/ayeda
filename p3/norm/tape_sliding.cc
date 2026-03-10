@@ -8,80 +8,69 @@
 // Correo: alu0101629469@ull.edu.es
 // Fecha: 11/3/2026
 // Archivo: tape_sliding.cc
-// Contenido: implementación de la clase tape_sliding
+// Contenido: implementación de la clase TapeSliding
 
-#ifndef SLIDING_VECTOR_H
-#define SLIDING_VECTOR_H
+#include "tape_sliding.h"
 
-#include <vector>
-#include "svexception.h"
-
-template <class T>
-class SlidingVector {
- public:
-  SlidingVector(int index_min, int index_max);
-
-  T& operator[](int index);
-  const T& operator[](int index) const;
-
-  int IndexMin() const;
-  int IndexMax() const;
-
-  void PushFront(const T& value);
-  void PushBack(const T& value);
-
- private:
-  std::vector<T> data_;
-  int index_min_;
-  int index_max_;
-
-  int MapIndex(int index) const;
-};
-
-template <class T>
-SlidingVector<T>::SlidingVector(int index_min, int index_max)
-    : index_min_(index_min),
-      index_max_(index_max),
-      data_(index_max - index_min + 1) {}
-
-template <class T>
-int SlidingVector<T>::MapIndex(int index) const {
-  if (index < index_min_ || index > index_max_) {
-    throw SVException("SlidingVector: index out of range");
+TapeSliding::TapeSliding(int size_x, int size_y, int colors)
+    : Tape(size_x, size_y, colors),
+      grid_(0, size_y - 1) {
+  for (int y = 0; y < size_y; ++y) {
+    grid_[y] = SlidingVector<Cell>(0, size_x - 1);
   }
-  return index - index_min_;
 }
 
-template <class T>
-T& SlidingVector<T>::operator[](int index) {
-  return data_[MapIndex(index)];
+void TapeSliding::ExpandX(int x) {
+  while (x < grid_[grid_.IndexMin()].IndexMin()) {
+    for (int y = grid_.IndexMin(); y <= grid_.IndexMax(); ++y) {
+      grid_[y].PushFront(Cell(0));
+    }
+  }
+  while (x > grid_[grid_.IndexMin()].IndexMax()) {
+    for (int y = grid_.IndexMin(); y <= grid_.IndexMax(); ++y) {
+      grid_[y].PushBack(Cell(0));
+    }
+  }
 }
 
-template <class T>
-const T& SlidingVector<T>::operator[](int index) const {
-  return data_[MapIndex(index)];
+void TapeSliding::ExpandY(int y) {
+  int x_min = grid_[grid_.IndexMin()].IndexMin();
+  int x_max = grid_[grid_.IndexMin()].IndexMax();
+  while (y < grid_.IndexMin()) {
+    grid_.PushFront(SlidingVector<Cell>(x_min, x_max));
+  }
+  while (y > grid_.IndexMax()) {
+    grid_.PushBack(SlidingVector<Cell>(x_min, x_max));
+  }
 }
 
-template <class T>
-int SlidingVector<T>::IndexMin() const {
-  return index_min_;
+int TapeSliding::GetCell(int x, int y) const {
+  if (y < grid_.IndexMin() || y > grid_.IndexMax()) return 0;
+  const SlidingVector<Cell>& row = grid_[y];
+  if (x < row.IndexMin() || x > row.IndexMax()) return 0;
+  return row[x].color;
 }
 
-template <class T>
-int SlidingVector<T>::IndexMax() const {
-  return index_max_;
+void TapeSliding::SetCell(int x, int y, int color) {
+  ExpandY(y);
+  ExpandX(x);
+  grid_[y][x].color = color;
 }
 
-template <class T>
-void SlidingVector<T>::PushFront(const T& value) {
-  data_.insert(data_.begin(), value);
-  index_min_--;
-}
+void TapeSliding::Print(std::ostream& os) const {
+  const char* colors_ansi[] = {
+    "\033[37m", "\033[31m", "\033[32m", "\033[34m",
+    "\033[33m", "\033[35m", "\033[36m", "\033[90m"
+  };
 
-template <class T>
-void SlidingVector<T>::PushBack(const T& value) {
-  data_.push_back(value);
-  index_max_++;
+  for (int y = grid_.IndexMin(); y <= grid_.IndexMax(); ++y) {
+    const SlidingVector<Cell>& row = grid_[y];
+    for (int x = row.IndexMin(); x <= row.IndexMax(); ++x) {
+      int c = row[x].color;
+      char display = (c == 0) ? ' ' : 'X';
+      const char* color_code = (c < 8) ? colors_ansi[c] : "\033[37m";
+      os << color_code << display << "\033[0m";
+    }
+    os << '\n';
+  }
 }
-
-#endif

@@ -8,9 +8,9 @@
 // Correo: alu0101629469@ull.edu.es
 // Fecha: 11/3/2026
 // Archivo: tape_sliding.h
-// Contenido: declaración de la clase tape_sliding
-// en esta versión del tablero las hormigas expanden el rango
-// del tablero cuando chocan con un borde
+// Contenido: declaración de la clase TapeSliding
+// en esta versión el tablero se expande dinámicamente cuando
+// la hormiga sale de los límites
 
 #ifndef TAPE_SLIDING_H_
 #define TAPE_SLIDING_H_
@@ -30,10 +30,8 @@ class TapeSliding : public Tape {
  private:
   SlidingVector<SlidingVector<Cell>> grid_;
 
-  void ExpandLeft();
-  void ExpandRight();
-  void ExpandTop();
-  void ExpandBottom();
+  void ExpandX(int x);
+  void ExpandY(int y);
 };
 
 #endif

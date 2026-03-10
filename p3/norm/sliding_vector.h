@@ -20,6 +20,7 @@
 template <class T>
 class SlidingVector {
  public:
+  SlidingVector() : index_min_(0), index_max_(-1) {}
   SlidingVector(int index_min, int index_max);
 
   T& operator[](int index);
@@ -32,9 +33,9 @@ class SlidingVector {
   void PushBack(const T& value);
 
  private:
-  std::vector<T> data_;
   int index_min_;
   int index_max_;
+  std::vector<T> data_;
 
   int MapIndex(int index) const;
 };
