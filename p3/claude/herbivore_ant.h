@@ -7,5 +7,19 @@
 // Autor: Marcos Barbuzano Socorro
 // Correo: alu0101629469@ull.edu.es
 // Fecha: 11/3/2026
-// Archivo: main.cc
-// Contenido: archivo principal de compilación
+// Archivo: herbivore_ant.h
+// Contenido: declaración de la clase herbivore_ant
+
+#ifndef HERBIVORE_ANT_H_
+#define HERBIVORE_ANT_H_
+
+#include "ant.h"
+
+class HerbivoreAnt : public Ant {
+ public:
+  HerbivoreAnt(int x, int y, int direction, int ttl);
+
+  void Step(Tape& tape) override;
+};
+
+#endif
