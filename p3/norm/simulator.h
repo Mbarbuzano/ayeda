@@ -8,33 +8,47 @@
 // Correo: alu0101629469@ull.edu.es
 // Fecha: 11/3/2026
 // Archivo: simulator.h
-// Contenido: declaración de la clase simulator
-// simulator es el director de orquesta de todo el código
-// y se encarga de seleccionar las clases pertinentes y construir y manejar
-// el tablero con las hormigas
+// Contenido: declaración de Simulator
 
 #ifndef SIMULATOR_H_
 #define SIMULATOR_H_
 
 #include <memory>
+#include <vector>
+#include <string>
+#include <iostream>
 #include "ant.h"
 #include "tape.h"
 
 class Simulator {
  public:
   Simulator(std::unique_ptr<Tape> tape);
+  ~Simulator();
 
   void AddAnt(Ant* ant);
-  void Step();
-  void Run(int steps);
+  void SetCell(int x, int y, int color);  // inicializa celdas no blancas
 
-  void Print() const;
+  // Ejecuta un paso
+  void Step();
+
+  // Bucle interactivo: avanza un paso por cada Enter
+  // Para cuando no quedan hormigas o el usuario interrumpe
+  void Run();
+
+  // Guarda el estado actual en fichero con el formato del guión
+  void Save(const std::string& filename) const;
+
+  void Print(std::ostream& os = std::cout) const;
+
+  bool HasLivingAnts() const;
 
  private:
   std::unique_ptr<Tape> tape_;
   std::vector<Ant*> ants_;
+  int step_count_;
 
   void RemoveDeadAnts();
+  void PrintAntInfo(std::ostream& os) const;
 };
 
 #endif

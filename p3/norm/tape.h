@@ -8,23 +8,29 @@
 // Correo: alu0101629469@ull.edu.es
 // Fecha: 11/3/2026
 // Archivo: tape.h
-// Contenido: declaración de la clase tape
-// esta será la estructura que maneja el tablero por el que se mueven las hormigas
 
 #ifndef TAPE_H_
 #define TAPE_H_
 
 #include <vector>
+#include <map>
+#include <string>
 #include <iostream>
 
-// Representa una celda de la cinta
 struct Cell {
   int color;
-
   Cell(int c = 0) : color(c) {}
 };
 
-// Clase base abstracta para las cintas
+// Información visual de una hormiga para pintar sobre el tablero
+struct AntMark {
+  char symbol;        // < > ^ v
+  std::string ansi;   // código de color ANSI para esta hormiga
+};
+
+// Mapa de posición -> marca de hormiga
+using AntOverlay = std::map<std::pair<int,int>, AntMark>;
+
 class Tape {
  public:
   Tape(int size_x, int size_y, int colors);
@@ -34,20 +40,21 @@ class Tape {
   int GetSizeY() const { return size_y_; }
   int GetColors() const { return colors_; }
 
-  // Acceso a celdas
   virtual int GetCell(int x, int y) const = 0;
   virtual void SetCell(int x, int y, int color) = 0;
-
-  // Cambia el color de la celda de forma cíclica
   virtual void NextColor(int x, int y);
 
-  // Mostrar la cinta
-  virtual void Print(std::ostream& os) const = 0;
+  // overlay: posiciones y símbolos de las hormigas (vacío = solo celdas)
+  virtual void Print(std::ostream& os,
+                     const AntOverlay& overlay = {}) const = 0;
 
  protected:
   int size_x_;
   int size_y_;
   int colors_;
+
+  // Colores ANSI para las celdas según su valor
+  static const char* CellColor(int c);
 };
 
 std::ostream& operator<<(std::ostream& os, const Tape& tape);

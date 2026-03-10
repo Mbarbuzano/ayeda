@@ -24,7 +24,7 @@ class TapePeriodic : public Tape {
   int GetCell(int x, int y) const override;
   void SetCell(int x, int y, int color) override;
 
-  void Print(std::ostream& os) const override;
+  void Print(std::ostream& os, const AntOverlay& overlay = {}) const override;
 
  private:
   std::vector<std::vector<Cell>> grid_;
