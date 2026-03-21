@@ -6,7 +6,7 @@
 // Práctica 4: Búsqueda por dispersión
 // Autor: Marcos Barbuzano Socorro
 // Correo: alu0101629469@ull.edu.es
-// Fecha: 11/3/2026
+// Fecha: 26/3/2026
 // Archivo: dispersion_function.h
 // Contenido: declaración de la clase abstracta dispersion_function y sus variantes
 // esta clase abstracta tiene tres implementaciones, que establece el contrato

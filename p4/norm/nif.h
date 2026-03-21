@@ -6,7 +6,7 @@
 // Práctica 4: Búsqueda por dispersión
 // Autor: Marcos Barbuzano Socorro
 // Correo: alu0101629469@ull.edu.es
-// Fecha: 11/3/2026
+// Fecha: 26/3/2026
 // Archivo: nif.h
 // Contenido: declaración de la clase Nif
 // es una clase simple usada para representar los DNI que se guardarán

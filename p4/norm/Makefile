@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -Wall -std=c++23
 
-SRC = main.cc nif.h dispersion_function.h
+SRC = main.cc nif.h dispersion_function.h sequence.h
 OBJ = $(SRC:.cc=.o)
 
 EXEC = langton
