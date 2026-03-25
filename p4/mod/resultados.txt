@@ -1,0 +1,27 @@
+Experimento: media de comparaciones por factor de carga
+Dispersión cerrada, fd=Módulo, fe=Lineal
+
+========================================
+ts=100  bs=2  fd=1  hash=close  fe=1
+alpha   claves insertadas media comparaciones
+----------------------------------------
+0.25    50                0.40
+0.50    100               3.80
+0.75    150               8.70
+
+========================================
+ts=500  bs=5  fd=1  hash=close  fe=1
+alpha   claves insertadas media comparaciones
+----------------------------------------
+0.25    625               2.10
+0.50    1250              4.50
+0.75    1875              8.90
+
+========================================
+ts=1000  bs=15  fd=1  hash=close  fe=1
+alpha   claves insertadas media comparaciones
+----------------------------------------
+0.25    3750              8.80
+0.50    7500              15.60
+0.75    11250             24.80
+

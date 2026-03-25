@@ -18,6 +18,11 @@
 
 class nif {
  public:
+  static unsigned comparisons;
+
+  static void resetComparisons() { comparisons = 0; }
+  static unsigned getComparisons() { return comparisons; }
+
   nif() {
     value_ = rand() % 100000000;
   }
@@ -29,10 +34,12 @@ class nif {
   }
 
   bool operator==(const nif& other) const {
+    ++comparisons;
     return value_ == other.value_;
   }
 
   bool operator!=(const nif& other) const {
+    ++comparisons;
     return value_ != other.value_;
   }
 
@@ -44,3 +51,5 @@ class nif {
  private:
   long value_;
 };
+
+inline unsigned nif::comparisons = 0;
