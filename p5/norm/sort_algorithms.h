@@ -1,5 +1,18 @@
+// Universidad de La Laguna
+// Escuela Superior de Ingeniería y Tecnología
+// Grado en Ingeniería Informática
+// Asignatura: Algoritmos y Estructuras de Datos Avanzadas
+// Curso: 2º
+// Práctica 5: Ordenación
+// Autor: Marcos Barbuzano Socorro
+// Correo: alu0101629469@ull.edu.es
+// Fecha: 15/4/2026
+// Archivo: sort_algorithms.h
+// Contenido: declaración de la clase sort_algorithms
+
+
 #pragma once
-#include "staticSequence.h"
+#include "static_sequence.h"
 #include <iostream>
 #include <cmath>   // pow()
 

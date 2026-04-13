@@ -1,3 +1,16 @@
+// Universidad de La Laguna
+// Escuela Superior de Ingeniería y Tecnología
+// Grado en Ingeniería Informática
+// Asignatura: Algoritmos y Estructuras de Datos Avanzadas
+// Curso: 2º
+// Práctica 5: Ordenación
+// Autor: Marcos Barbuzano Socorro
+// Correo: alu0101629469@ull.edu.es
+// Fecha: 15/4/2026
+// Archivo: sequence.h
+// Contenido: declaración de la clase sequence
+
+
 #pragma once
 #include <cstddef>
 
